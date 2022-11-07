@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/UserProvider';
 import './Register.css';
+import { FaGoogle, FaUserAlt, FaPhotoVideo, FaLock } from 'react-icons/fa';
+import { AiOutlineMail } from 'react-icons/ai';
 
 const Register = () => {
-	const { createUser, updateUserProfile } = useContext(AuthContext);
+	const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
 
 	const handleRegister = (event) => {
 		event.preventDefault();
@@ -25,6 +27,19 @@ const Register = () => {
 			})
 			.catch((err) => {
 				console.log(err);
+			});
+	};
+
+	const handleGoogleSignIn = () => {
+		googleSignIn()
+			.then((result) => {
+				const user = result.user;
+				console.log(user);
+				toast.success('Logged In');
+			})
+			.catch((err) => {
+				console.log(err);
+				toast.error(err.message);
 			});
 	};
 
@@ -51,19 +66,7 @@ const Register = () => {
 						</h1>
 						<div className="relative flex items-center mt-8">
 							<span className="absolute">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									stroke-width="2">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-									/>
-								</svg>
+								<FaUserAlt className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
 							</span>
 
 							<input
@@ -75,19 +78,7 @@ const Register = () => {
 						</div>
 						<div className="relative flex items-center mt-8">
 							<span className="absolute">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									stroke-width="2">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-									/>
-								</svg>
+								<FaPhotoVideo className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
 							</span>
 
 							<input
@@ -100,19 +91,7 @@ const Register = () => {
 
 						<div className="relative flex items-center mt-6">
 							<span className="absolute">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									stroke-width="2">
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-									/>
-								</svg>
+								<AiOutlineMail className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
 							</span>
 
 							<input
@@ -125,19 +104,7 @@ const Register = () => {
 
 						<div className="relative flex items-center mt-4">
 							<span className="absolute">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									strokeWidth="2">
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-									/>
-								</svg>
+								<FaLock className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
 							</span>
 
 							<input
@@ -161,6 +128,25 @@ const Register = () => {
 									Login
 								</Link>
 							</div>
+						</div>
+						<div className="flex items-center justify-between mt-4">
+							<span className="w-1/5 border-b dark:border-gray-600 lg:w-1/5"></span>
+
+							<span className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline">
+								or login with Social Media
+							</span>
+
+							<span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
+						</div>
+
+						<div className="flex items-center mt-6 -mx-2">
+							<button
+								type="button"
+								onClick={handleGoogleSignIn}
+								className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors  transform bg-blue-500 rounded-md hover:bg-blue-400 duration-500 focus:bg-blue-400 focus:outline-none">
+								<FaGoogle className="w-4 h-4 mx-2 fill-current" />
+								<span className="hidden mx-2 sm:inline">Sign in with Google</span>
+							</button>
 						</div>
 					</form>
 				</div>
