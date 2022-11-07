@@ -5,8 +5,7 @@ import { AuthContext } from '../../Contexts/UserProvider';
 import './Register.css';
 
 const Register = () => {
-
-    const {createUser} = useContext(AuthContext)
+	const { createUser, updateUserProfile } = useContext(AuthContext);
 
 	const handleRegister = (event) => {
 		event.preventDefault();
@@ -15,15 +14,31 @@ const Register = () => {
 		const photoURL = form.photoURL.value;
 		const email = form.email.value;
 		const password = form.password.value;
-        console.log(name, photoURL, email, password);
-        
-        createUser(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                toast.success('Successfully registered')
-        })
 
+		createUser(email, password)
+			.then((result) => {
+				const user = result.user;
+				console.log(user);
+				handleUpdateProfile(name, photoURL);
+				form.reset();
+				toast.success('Successfully registered');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	const handleUpdateProfile = (name, photoURL) => {
+		const profile = {
+			displayName: name,
+			photoURL: photoURL,
+		};
+		updateUserProfile(profile)
+			.then(() => {})
+			.catch((err) => {
+				console.log(err);
+				toast.error(err.message);
+			});
 	};
 
 	return (
@@ -134,7 +149,9 @@ const Register = () => {
 						</div>
 
 						<div className="mt-6">
-							<button type='submit' className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white  transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+							<button
+								type="submit"
+								className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white  transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
 								Sign Up
 							</button>
 
