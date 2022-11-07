@@ -1,4 +1,5 @@
 import React from 'react';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
 
 const ServicesCard = ({ service }) => {
@@ -9,11 +10,22 @@ const ServicesCard = ({ service }) => {
 			<div className="max-w-lg p-4 shadow-md dark:bg-gray-900 dark:text-gray-100 rounded-lg">
 				<div className="space-y-4">
 					<div className="space-y-2">
-						<img
+						<PhotoProvider
 							src={image}
-							alt=""
-							className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
-						/>
+							speed={() => 800}
+							easing={(type) =>
+								type === 2
+									? 'cubic-bezier(0.36, 0, 0.66, -0.56)'
+									: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+							}>
+							<PhotoView src={image}>
+								<img
+									src={image}
+									alt="services"
+									className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
+								/>
+							</PhotoView>
+						</PhotoProvider>
 					</div>
 					<div className="space-y-5">
 						<div>
@@ -30,7 +42,7 @@ const ServicesCard = ({ service }) => {
 								<button
 									type="button"
 									className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 hover:bg-violet-700 hover:text-white duration-500 dark:text-gray-900 ">
-									Read more
+									View Details
 								</button>
 							</Link>
 						</div>

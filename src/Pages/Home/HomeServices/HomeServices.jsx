@@ -17,10 +17,10 @@ const HomeServices = () => {
 
 			<div>
 				<Link to={'/services'}>
-					<button class="group relative inline-flex items-center overflow-hidden rounded bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600 px-14 py-4 text-white focus:outline-none focus:ring active:bg-indigo-500">
-						<span class="absolute right-0 translate-x-full transition-transform group-hover:-translate-x-4">
+					<button className="group relative inline-flex items-center overflow-hidden rounded bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600 px-14 py-4 text-white focus:outline-none focus:ring active:bg-indigo-500">
+						<span className="absolute right-0 translate-x-full transition-transform group-hover:-translate-x-4">
 							<svg
-								class="h-5 w-5"
+								className="h-5 w-5"
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
 								viewBox="0 0 24 24"
@@ -34,7 +34,7 @@ const HomeServices = () => {
 							</svg>
 						</span>
 
-						<span class="text-sm font-medium transition-all group-hover:mr-4">See All</span>
+						<span className="text-sm font-medium transition-all group-hover:mr-4">See All</span>
 					</button>
 				</Link>
 			</div>

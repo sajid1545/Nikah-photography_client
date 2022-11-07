@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/UserProvider';
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/logo-12.png';
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -66,8 +66,8 @@ const Header = () => {
 		<div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
 			<div className="relative flex items-center justify-between">
 				<Link to={'/'} aria-label="Company" title="Company" className="inline-flex items-center">
-					<img src={logo} alt="" className="w-24" />
-					<span className="font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-wide text-gray-800 uppercase">
+					<img src={logo} alt="" className="w-20 rounded-full " />
+					<span className="ml-2 font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-wide text-gray-800 uppercase">
 						Nikah Photography
 					</span>
 				</Link>
@@ -103,8 +103,8 @@ const Header = () => {
 											aria-label="Company"
 											title="Company"
 											className="inline-flex items-center">
-											<img src={logo} alt="" className="w-24" />
-											<span className="font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-wide text-gray-800 uppercase">
+											<img src={logo} alt="" className="w-20 rounded-full " />
+											<span className="ml-2 font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-wide text-gray-800 uppercase">
 												Nikah Photography
 											</span>
 										</Link>
