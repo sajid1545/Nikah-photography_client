@@ -24,7 +24,9 @@ const Header = () => {
 						<Link className="font-medium text-gray-700 ">My Reviews</Link>
 					</li>
 					<li>
-						<Link className="font-medium text-gray-700 ">Add Service</Link>
+						<Link to={'/add-services'} className="font-medium text-gray-700 ">
+							Add Service
+						</Link>
 					</li>
 					<li>
 						<button
