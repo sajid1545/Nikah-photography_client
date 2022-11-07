@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPhotoVideo, FaRegMoneyBillAlt } from 'react-icons/fa';
+import { FaPhotoVideo } from 'react-icons/fa';
 import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
@@ -18,7 +18,7 @@ const AddReviews = () => {
 		};
 		console.log(review);
 
-		fetch('http://localhost:5000/reviews', {
+		fetch('https://assignment-11-server-pi.vercel.app/reviews', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',

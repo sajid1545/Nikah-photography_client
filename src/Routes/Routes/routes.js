@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
 			{
 				path: '/',
 				element: <Home />,
-				loader: () => fetch('http://localhost:5000/limited-services'),
+				loader: () => fetch('https://assignment-11-server-pi.vercel.app/limited-services'),
 			},
 			{
 				path: '/login',
@@ -34,12 +34,12 @@ export const router = createBrowserRouter([
 			{
 				path: '/services',
 				element: <Services />,
-				loader: () => fetch('http://localhost:5000/services'),
+				loader: () => fetch('https://assignment-11-server-pi.vercel.app/services'),
 			},
 			{
 				path: '/services/:id',
 				element: <ServiceDetails />,
-				loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+				loader: ({ params }) => fetch(`https://assignment-11-server-pi.vercel.app/services/${params.id}`),
 			},
 			{
 				path: '/my-reviews',

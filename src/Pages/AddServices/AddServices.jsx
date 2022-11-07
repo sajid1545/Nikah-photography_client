@@ -19,7 +19,7 @@ const AddServices = () => {
 			image: photoURL,
 		};
 
-		fetch('http://localhost:5000/services', {
+		fetch('https://assignment-11-server-pi.vercel.app/services', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
