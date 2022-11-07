@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/UserProvider';
+import AddReviews from '../AddReviews/AddReviews';
+import Reviews from './Reviews/Reviews';
 
 const ServiceDetails = () => {
 	const service = useLoaderData();
+	const {user} = useContext(AuthContext)
 
 	const { serviceName, image, price, _id, description } = service;
 
@@ -22,7 +26,7 @@ const ServiceDetails = () => {
 									: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
 							}>
 							<PhotoView src={image}>
-								<img src={image} alt="services" className="w-96 h-60" />
+								<img src={image} alt="services" className="w-96 h-60 cursor-pointer" />
 							</PhotoView>
 						</PhotoProvider>
 					</figure>
@@ -41,7 +45,11 @@ const ServiceDetails = () => {
 
 			{/* review section */}
 
-			<div></div>
+			<div>
+				{
+					user?.email ? <AddReviews/> : <Reviews/>
+				}
+			</div>
 		</div>
 	);
 };

@@ -3,45 +3,44 @@ import { FaPhotoVideo, FaRegMoneyBillAlt } from 'react-icons/fa';
 import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
-const AddServices = () => {
-	const handleAddService = (event) => {
+const AddReviews = () => {
+	const handleAddReview = (event) => {
 		event.preventDefault();
 		const form = event.target;
-		const serviceName = form.serviceName.value;
-		const price = form.price.value;
+		const userName = form.userName.value;
+		const text = form.text.value;
 		const photoURL = form.photoURL.value;
-		const description = form.description.value;
 
-		const service = {
-			serviceName,
-			price,
-			description,
-			image: photoURL,
+		const review = {
+			name: userName,
+			text,
+			picture: photoURL,
 		};
+		console.log(review);
 
-		fetch('http://localhost:5000/services', {
+		fetch('http://localhost:5000/reviews', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
 			},
-			body: JSON.stringify(service),
+			body: JSON.stringify(review),
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.acknowledged) {
-					toast.success('Service Added successfully');
+					toast.success('Review Added');
 					form.reset();
 				}
 			});
 	};
 
 	return (
-		<div className="max-w-[1000px] mx-auto ">
+		<div className="max-w-[1000px] mx-auto my-10">
 			<h1 className="text-5xl text-center mb-5 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-800 font-extrabold">
-				Add Service
+				Add Review
 			</h1>
 			<section className=" p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-				<form onSubmit={handleAddService}>
+				<form onSubmit={handleAddReview}>
 					<div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 						<div className="relative flex items-center mt-8">
 							<span className="absolute">
@@ -49,23 +48,10 @@ const AddServices = () => {
 							</span>
 							<input
 								type="text"
-								name="serviceName"
+								name="userName"
 								required
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-								placeholder="Service Name"
-							/>
-						</div>
-
-						<div className="relative flex items-center mt-8">
-							<span className="absolute">
-								<FaRegMoneyBillAlt className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
-							</span>
-
-							<input
-								type="number"
-								name="price"
-								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-								placeholder="Price"
+								placeholder="User Name"
 							/>
 						</div>
 
@@ -75,11 +61,10 @@ const AddServices = () => {
 							</span>
 							<textarea
 								type="text"
-								name="description"
+								name="text"
 								required
-								rows={5}
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-								placeholder="Description"
+								placeholder="Your Review"
 							/>
 						</div>
 
@@ -91,7 +76,6 @@ const AddServices = () => {
 							<input
 								type="text"
 								name="photoURL"
-								required
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 								placeholder="Photo URL"
 							/>
@@ -111,4 +95,4 @@ const AddServices = () => {
 	);
 };
 
-export default AddServices;
+export default AddReviews;

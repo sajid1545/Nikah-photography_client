@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/UserProvider';
 import logo from '../../../assets/images/logo-12.png';
+import { FaUser } from 'react-icons/fa';
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -14,19 +15,23 @@ const Header = () => {
 	const menuItems = (
 		<>
 			<li>
-				<Link to={'/blogs'} className="font-medium text-gray-700 ">
+				<NavLink
+					to={'/blogs'}
+					className={`font-medium ${(isActive) => (isActive ? 'bg-red-600' : undefined)}`}>
 					Blogs
-				</Link>
+				</NavLink>
 			</li>
 			{user?.email ? (
 				<>
 					<li>
-						<Link className="font-medium text-gray-700 ">My Reviews</Link>
+						<NavLink to={'/my-reviews'} className="font-medium  ">
+							My Reviews
+						</NavLink>
 					</li>
 					<li>
-						<Link to={'/add-services'} className="font-medium text-gray-700 ">
+						<NavLink to={'/add-services'} className="font-medium  ">
 							Add Service
-						</Link>
+						</NavLink>
 					</li>
 					<li>
 						<button
@@ -36,14 +41,6 @@ const Header = () => {
 								Log Out
 							</span>
 						</button>
-					</li>
-
-					<li>
-						<div className="avatar">
-							<div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-								<img src={user?.photoURL} alt="users" />
-							</div>
-						</div>
 					</li>
 				</>
 			) : (
@@ -59,6 +56,19 @@ const Header = () => {
 					</li>
 				</>
 			)}
+			<li>
+				{user?.photoURL ? (
+					<>
+						<div className="avatar">
+							<div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+								<img src={user?.photoURL} alt="users" />
+							</div>
+						</div>
+					</>
+				) : (
+					<FaUser className="w-12 h-8 rounded-full text-gray-600" />
+				)}
+			</li>
 		</>
 	);
 

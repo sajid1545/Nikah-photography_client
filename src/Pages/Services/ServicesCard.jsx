@@ -22,7 +22,7 @@ const ServicesCard = ({ service }) => {
 								<img
 									src={image}
 									alt="services"
-									className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
+									className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500 cursor-pointer"
 								/>
 							</PhotoView>
 						</PhotoProvider>
