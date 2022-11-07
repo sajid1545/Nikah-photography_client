@@ -1,4 +1,5 @@
 import React from 'react';
+import HomeServices from '../HomeServices/HomeServices';
 import MyInfo from '../MyInfo/MyInfo';
 import MyPhotography from '../MyPhotography/MyPhotography';
 import PhotoSlider from '../PhotoSlider/PhotoSlider';
@@ -10,6 +11,7 @@ const Home = () => {
 			<SelfBanner />
 			<PhotoSlider />
 			<MyInfo />
+			<HomeServices/>
 			<MyPhotography />
 		</div>
 	);

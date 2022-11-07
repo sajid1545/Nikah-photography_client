@@ -1,10 +1,38 @@
 import React from 'react';
 import { FaPhotoVideo, FaRegMoneyBillAlt } from 'react-icons/fa';
+import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 const AddServices = () => {
 	const handleAddService = (event) => {
 		event.preventDefault();
 		const form = event.target;
+		const serviceName = form.serviceName.value;
+		const price = form.price.value;
+		const photoURL = form.photoURL.value;
+		const description = form.description.value;
+
+		const service = {
+			serviceName,
+			price,
+			description,
+			image: photoURL,
+		};
+
+		fetch('http://localhost:5000/services', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(service),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.acknowledged) {
+					toast.success('Service Added successfully');
+					form.reset();
+				}
+			});
 	};
 
 	return (
@@ -15,25 +43,18 @@ const AddServices = () => {
 			<section className=" p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
 				<form onSubmit={handleAddService}>
 					<div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-						<div>
-							<label className="text-gray-700 dark:text-gray-200">Service Name</label>
+						<div className="relative flex items-center mt-8">
+							<span className="absolute">
+								<MdTextsms className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
+							</span>
 							<input
 								type="text"
-								name="eventTitle"
+								name="serviceName"
 								required
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+								placeholder="Service Name"
 							/>
 						</div>
-
-						{/* <div>
-							<label className="text-gray-700 dark:text-gray-200">Price</label>
-							<input
-								type="number"
-								name="price"
-								required
-								className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-							/>
-						</div> */}
 
 						<div className="relative flex items-center mt-8">
 							<span className="absolute">
@@ -41,21 +62,24 @@ const AddServices = () => {
 							</span>
 
 							<input
-								type="text"
-								name="photoURL"
+								type="number"
+								name="price"
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 								placeholder="Price"
 							/>
 						</div>
 
-						<div>
-							<label className="text-gray-700 dark:text-gray-200">Description</label>
+						<div className="relative flex items-center mt-8">
+							<span className="absolute top-[12px]">
+								<MdOutlineDescription className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
+							</span>
 							<textarea
 								type="text"
 								name="description"
 								required
 								rows={5}
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+								placeholder="Description"
 							/>
 						</div>
 

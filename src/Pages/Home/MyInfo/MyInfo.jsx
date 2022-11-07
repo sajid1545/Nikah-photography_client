@@ -5,7 +5,7 @@ import banner from '../../../assets/images/b-2.jpg';
 const MyInfo = () => {
 	return (
 		<div>
-			<div className="flex items-center max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 text-white dark:bg-gray-900 my-10 p-20">
+			<div className="flex items-center max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 text-white dark:bg-gray-900 my-10 p-20 flex-col">
 				<img
 					src={banner}
 					alt=""

@@ -4,7 +4,7 @@ import self from '../../../assets/images/self-1.jpg';
 
 const MyPhotography = () => {
 	return (
-		<div>
+		<div className='my-10'>
 			<h1 className="my-5 text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
 				About Your Photographer
 			</h1>
