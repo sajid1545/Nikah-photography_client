@@ -1,18 +1,62 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Contexts/UserProvider';
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+	const { user, logOut } = useContext(AuthContext);
+
+	const handleLogOut = () => {
+		logOut().then().catch();
+	};
+
 	const menuItems = (
 		<>
 			<li>
-				<a
-					href="/"
-					
-					className="font-medium text-gray-700 ">
+				<Link to={'/blogs'} className="font-medium text-gray-700 ">
 					Blogs
-				</a>
+				</Link>
 			</li>
+			{user?.email ? (
+				<>
+					<li>
+						<Link className="font-medium text-gray-700 ">My Reviews</Link>
+					</li>
+					<li>
+						<Link className="font-medium text-gray-700 ">Add Service</Link>
+					</li>
+					<li>
+						<button
+							onClick={handleLogOut}
+							class="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
+							<span class="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent duration-500">
+								Log Out
+							</span>
+						</button>
+					</li>
+
+					<li>
+						<div className="avatar">
+							<div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+								<img src={user?.photoURL} alt="users" />
+							</div>
+						</div>
+					</li>
+				</>
+			) : (
+				<>
+					<li>
+						<Link to={'/login'}>
+							<button class="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
+								<span class="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent  duration-500">
+									Login
+								</span>
+							</button>
+						</Link>
+					</li>
+				</>
+			)}
 		</>
 	);
 
