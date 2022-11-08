@@ -5,12 +5,22 @@ import MyReviewCards from './MyReviewCards';
 import { toast } from 'react-toastify';
 
 const MyReviews = () => {
-	const { user } = useContext(AuthContext);
+	const { user,logOut } = useContext(AuthContext);
 	const [reviews, setReviews] = useState([]);
 
 	useEffect(() => {
-		fetch(`https://assignment-11-server-pi.vercel.app/my-reviews?email=${user?.email}`)
-			.then((res) => res.json())
+		fetch(`https://assignment-11-server-pi.vercel.app/my-reviews?email=${user?.email}`, {
+			headers: {
+				authorization: `Bearer ${localStorage.getItem('photo-token')}`,
+			},
+		})
+			.then((res) => {
+				if (res.status === 401 || res.status === 403) {
+					return logOut()
+				}
+				
+				return res.json()
+			})
 			.then((data) => setReviews(data));
 	}, [user?.email]);
 
@@ -36,7 +46,9 @@ const MyReviews = () => {
 		<div>
 			<h1>
 				{reviews.length === 0 ? (
-					<p className='text-5xl font-extrabold flex items-center min-h-screen justify-center bg-clip-text text-transparent bg-gradient-to-l from-red-500 to-red-800'>No reviews were Added</p>
+					<p className="text-5xl font-extrabold flex items-center min-h-screen justify-center bg-clip-text text-transparent bg-gradient-to-l from-red-500 to-red-800">
+						No reviews were Added
+					</p>
 				) : (
 					<p className="text-4xl font-bold">
 						<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold">

@@ -10,6 +10,7 @@ const Header = () => {
 
 	const handleLogOut = () => {
 		logOut().then().catch();
+		localStorage.removeItem('photo-token');
 	};
 
 	const menuItems = (
