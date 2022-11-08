@@ -25,15 +25,13 @@ const Register = () => {
 		createUser(email, password)
 			.then((result) => {
 				const user = result.user;
+				handleUpdateProfile(name, photoURL);
 				const currentUser = {
 					email: user?.email,
 				};
-				handleUpdateProfile(name, photoURL);
-				setAuthToken(currentUser);
-
 				navigate(from, { replace: true });
-
 				toast.success('Successfully registered');
+				setAuthToken(currentUser);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -45,10 +43,8 @@ const Register = () => {
 		googleSignIn()
 			.then((result) => {
 				const user = result.user;
-				const currentUser = {
-					email: user?.email,
-				};
-				setAuthToken(currentUser);
+				
+				setAuthToken(user);
 
 				navigate(from, { replace: true });
 				toast.success('Logged In');

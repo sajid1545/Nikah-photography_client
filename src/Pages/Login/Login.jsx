@@ -52,10 +52,8 @@ const Login = () => {
 		googleSignIn()
 			.then((result) => {
 				const user = result.user;
-				const currentUser = {
-					email: user?.email,
-				};
-				setAuthToken(currentUser);
+				
+				setAuthToken(user);
 
 				navigate(from, { replace: true });
 				toast.success('Logged In');
@@ -116,7 +114,7 @@ const Login = () => {
 
 				<div className="flex items-center mt-6 -mx-2">
 					<button
-						type="button"
+						// type="button"
 						onClick={handleGoogleSignIn}
 						className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors  transform bg-blue-500 rounded-md hover:bg-blue-400 duration-500 focus:bg-blue-400 focus:outline-none">
 						<FaGoogle className="w-4 h-4 mx-2 fill-current" />
