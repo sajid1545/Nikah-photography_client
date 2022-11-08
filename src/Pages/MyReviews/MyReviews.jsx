@@ -19,7 +19,10 @@ const MyReviews = () => {
 					<p>No reviews were Added</p>
 				) : (
 					<p className="text-4xl font-bold">
-						<span className='bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold'>{user?.displayName}</span> have {reviews.length} reviews
+						<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold">
+							{user?.displayName}
+						</span>{' '}
+						have {reviews.length} reviews
 					</p>
 				)}
 			</h1>

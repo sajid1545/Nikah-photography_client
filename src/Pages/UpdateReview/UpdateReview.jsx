@@ -1,14 +1,21 @@
 import React, { useContext } from 'react';
 import { FaPhotoVideo } from 'react-icons/fa';
 import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
-import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/UserProvider';
+import { toast } from 'react-toastify';
+import { useLoaderData } from 'react-router-dom';
 
-const AddReviews = ({ service }) => {
-	const { serviceName, image, price, _id, description } = service;
+const UpdateReview = () => {
 	const { user } = useContext(AuthContext);
 
-	const handleAddReview = (event) => {
+	const review = useLoaderData();
+	console.log(review);
+
+	const { serviceId, picture, name, email, text } = review.review;
+
+	const { _id } = review;
+
+	const handleUpdateReview = (event) => {
 		event.preventDefault();
 		const form = event.target;
 		const userName = form.userName.value;
@@ -19,13 +26,12 @@ const AddReviews = ({ service }) => {
 			name: userName,
 			text,
 			picture: photoURL,
-			serviceId: _id,
+			serviceId,
 			email: user?.email,
 		};
-		console.log(review);
 
-		fetch('https://assignment-11-server-pi.vercel.app/reviews', {
-			method: 'POST',
+		fetch(`https://assignment-11-server-pi.vercel.app/reviews/${_id}`, {
+			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json',
 			},
@@ -33,21 +39,17 @@ const AddReviews = ({ service }) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				if (data.acknowledged) {
-					toast.success('Review Added');
-					form.reset();
+				if (data.modifiedCount > 0) {
+					toast.success('Updated Successfully');
 				}
 			});
 	};
 
 	return (
-		<div className="max-w-[1000px] mx-auto my-10">
-			<h1 className="text-5xl text-center mb-5 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-800 font-extrabold">
-				Add Review
-			</h1>
-			<section className=" p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-				<form onSubmit={handleAddReview}>
-					<div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+		<div>
+			<section className="max-w-[1200px] p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+				<form onSubmit={handleUpdateReview}>
+					<div className="">
 						<div className="relative flex items-center mt-8">
 							<span className="absolute">
 								<MdTextsms className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" />
@@ -55,7 +57,7 @@ const AddReviews = ({ service }) => {
 							<input
 								type="text"
 								name="userName"
-								defaultValue={user?.displayName}
+								defaultValue={name}
 								required
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 								placeholder="User Name"
@@ -69,6 +71,7 @@ const AddReviews = ({ service }) => {
 							<textarea
 								type="text"
 								name="text"
+								defaultValue={text}
 								required
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 								placeholder="Your Review"
@@ -83,6 +86,7 @@ const AddReviews = ({ service }) => {
 							<input
 								type="text"
 								name="photoURL"
+								defaultValue={picture}
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 								placeholder="Photo URL"
 							/>
@@ -92,8 +96,8 @@ const AddReviews = ({ service }) => {
 					<div className="flex justify-end mt-6">
 						<button
 							type="submit"
-							className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-							Add Review
+							className="px-12 mt-5 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600 mx-auto">
+							Update Review
 						</button>
 					</div>
 				</form>
@@ -102,4 +106,4 @@ const AddReviews = ({ service }) => {
 	);
 };
 
-export default AddReviews;
+export default UpdateReview;

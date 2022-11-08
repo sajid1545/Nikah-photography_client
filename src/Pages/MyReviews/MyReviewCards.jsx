@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { FaEdit, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import UpdateReview from '../UpdateReview/UpdateReview';
+import { AuthContext } from './../../Contexts/UserProvider';
 
 const MyReviewCards = ({ review }) => {
-	console.log(review);
-
+	const { user } = useContext(AuthContext);
 	const { serviceId, picture, name, email, text } = review.review;
 
 	const [reviewedService, setReviewedService] = useState({});
@@ -15,7 +18,7 @@ const MyReviewCards = ({ review }) => {
 
 	return (
 		<div>
-			<div className="card card-compact bg-[#111827] text-[#8AA3AF] shadow-xl flex justify-center items-center space-y-5">
+			<div className="card card-compact bg-[#111827] text-[#8AA3AF] shadow-xl flex justify-center items-center space-y-5  shadow-purple-500">
 				<figure>
 					<img src={reviewedService.image} alt="photos" className="" />
 				</figure>
@@ -25,29 +28,46 @@ const MyReviewCards = ({ review }) => {
 
 					<div>
 						<div className="flex gap-5 justify-center my-5">
-							<button
-								class="group relative inline-block overflow-hidden border border-indigo-600 px-8 py-3 focus:outline-none focus:ring"
-								href="/download">
-								<span class="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full group-active:bg-indigo-500"></span>
+							{/* <a href="#my-modal-2" className="">
+								
+							</a>
+							<div className="modal" id="my-modal-2">
+								<div className="modal-box relative">
+									<a
+										href="#"
+										id="my-modal-2"
+										className="btn btn-sm btn-circle absolute right-2 top-2">
+										✕
+									</a>
+									<UpdateReview review={review}  />
+								</div>
+								
+							</div> */}
+							<Link to={`/update-review/${review._id}`}>
+								<button
+									className="group relative inline-block overflow-hidden border border-indigo-600 px-10 py-3 focus:outline-none focus:ring"
+									href="/download">
+									<span className="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full group-active:bg-indigo-500"></span>
 
-								<span class="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white">
-									Edit
-								</span>
-							</button>
+									<span className="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white flex items-center gap-3">
+										<FaEdit /> <span>Edit</span>
+									</span>
+								</button>
+							</Link>
 							<button
-								class="group relative inline-block overflow-hidden border border-red-600 px-8 py-3 focus:outline-none focus:ring"
+								className="group relative inline-block overflow-hidden border border-red-600 px-10 py-3 focus:outline-none focus:ring"
 								href="/download">
-								<span class="absolute inset-x-0 bottom-0 h-[2px] bg-red-600 transition-all group-hover:h-full group-active:bg-red-500"></span>
+								<span className="absolute inset-x-0 bottom-0 h-[2px] bg-red-600 transition-all group-hover:h-full group-active:bg-red-500"></span>
 
-								<span class="relative text-sm font-medium text-red-600 transition-colors group-hover:text-white">
-									Delete
+								<span className="relative text-sm font-medium text-red-600 transition-colors group-hover:text-white flex items-center gap-3">
+									<FaTrash /> <span>Delete</span>
 								</span>
 							</button>
 						</div>
 					</div>
 
 					<div className="flex justify-center gap-5 items-center">
-						<div >
+						<div>
 							<img
 								alt=""
 								className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-violet-400 ring-offset-gray-800"
@@ -55,7 +75,7 @@ const MyReviewCards = ({ review }) => {
 							/>
 						</div>
 						<div>
-							<p>{name}</p>
+							<p>{name || user?.displayName}</p>
 						</div>
 					</div>
 				</div>
