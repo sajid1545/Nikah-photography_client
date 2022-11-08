@@ -3,6 +3,7 @@ import { AuthContext } from './../../Contexts/UserProvider';
 import MyReviewCards from './MyReviewCards';
 
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const MyReviews = () => {
 	const { user, logOut } = useContext(AuthContext);
@@ -69,6 +70,9 @@ const MyReviews = () => {
 					<MyReviewCards key={review._id} review={review} handleDeleteReview={handleDeleteReview} />
 				))}
 			</div>
+			<Helmet>
+				<title>My Reviews - Nikah Photography</title>
+			</Helmet>
 		</div>
 	);
 };

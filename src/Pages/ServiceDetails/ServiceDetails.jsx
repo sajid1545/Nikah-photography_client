@@ -4,6 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserProvider';
 import AddReviews from '../AddReviews/AddReviews';
 import Reviews from './Reviews/Reviews';
+import { Helmet } from 'react-helmet-async';
 
 const ServiceDetails = () => {
 	const service = useLoaderData();
@@ -91,6 +92,9 @@ const ServiceDetails = () => {
 					<h1>No review</h1>
 				)}
 			</div>
+			<Helmet>
+				<title>ServiceDetails - Nikah Photography</title>
+			</Helmet>
 		</div>
 	);
 };

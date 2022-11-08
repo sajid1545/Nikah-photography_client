@@ -1,8 +1,9 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Blogs = () => {
 	return (
-		<div className='md:mt-0  mt-[300px]'>
+		<div className="md:mt-0  mt-[300px]">
 			<div className="space-y-4 max-w-[1300px] mx-auto my-10 ">
 				{/* Question - 1 */}
 				<details className="group border-l-8 border-purple-700 bg-gray-50 p-6">
@@ -147,6 +148,9 @@ const Blogs = () => {
 					</p>
 				</details>
 			</div>
+			<Helmet>
+				<title>Blogs - Nikah Photography</title>
+			</Helmet>
 		</div>
 	);
 };

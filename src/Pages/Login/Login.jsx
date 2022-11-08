@@ -5,6 +5,7 @@ import './Login.css';
 import { toast } from 'react-toastify';
 import { FaGoogle } from 'react-icons/fa';
 import { setAuthToken } from '../../API/CreateJWTtoken';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
 	const { login, googleSignIn } = useContext(AuthContext);
@@ -52,7 +53,7 @@ const Login = () => {
 		googleSignIn()
 			.then((result) => {
 				const user = result.user;
-				
+
 				setAuthToken(user);
 
 				navigate(from, { replace: true });
@@ -132,6 +133,9 @@ const Login = () => {
 					</Link>
 				</p>
 			</div>
+			<Helmet>
+				<title>Login - Nikah Photography</title>
+			</Helmet>
 		</div>
 	);
 };

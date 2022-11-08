@@ -2,6 +2,7 @@ import React from 'react';
 import { FaPhotoVideo, FaRegMoneyBillAlt } from 'react-icons/fa';
 import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const AddServices = () => {
 	const handleAddService = (event) => {
@@ -36,7 +37,7 @@ const AddServices = () => {
 	};
 
 	return (
-		<div className="max-w-[1000px] mx-auto md:mt-0  mt-[300px] ">
+		<div className="max-w-[1000px] mx-auto my-10 md:mt-0  mt-[300px] ">
 			<h1 className="text-5xl text-center mb-5 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-800 font-extrabold">
 				Add Service
 			</h1>
@@ -107,6 +108,9 @@ const AddServices = () => {
 					</div>
 				</form>
 			</section>
+			<Helmet>
+				<title>Add Services - Nikah Photography</title>
+			</Helmet>
 		</div>
 	);
 };

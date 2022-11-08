@@ -3,6 +3,7 @@ import { Triangle, Vortex } from 'react-loader-spinner';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserProvider';
 import ServicesCard from './ServicesCard';
+import { Helmet } from 'react-helmet-async';
 
 const Services = () => {
 	const { loading } = useContext(AuthContext);
@@ -31,6 +32,9 @@ const Services = () => {
 					<ServicesCard key={service._id} service={service} />
 				))}
 			</div>
+			<Helmet>
+				<title>Services - Nikah Photography</title>
+			</Helmet>
 		</div>
 	);
 };

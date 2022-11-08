@@ -4,12 +4,12 @@ import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
 import { AuthContext } from '../../Contexts/UserProvider';
 import { toast } from 'react-toastify';
 import { useLoaderData } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateReview = () => {
 	const { user } = useContext(AuthContext);
 
 	const review = useLoaderData();
-	
 
 	const { serviceId, picture, name, email, text } = review.review;
 
@@ -46,7 +46,7 @@ const UpdateReview = () => {
 	};
 
 	return (
-		<div className='md:mt-0  mt-[300px]'>
+		<div className="md:mt-0  mt-[300px]">
 			<section className="max-w-[1200px] p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
 				<form onSubmit={handleUpdateReview}>
 					<div className="">
@@ -102,6 +102,9 @@ const UpdateReview = () => {
 					</div>
 				</form>
 			</section>
+			<Helmet>
+				<title>Update Review - Nikah Photography</title>
+			</Helmet>
 		</div>
 	);
 };

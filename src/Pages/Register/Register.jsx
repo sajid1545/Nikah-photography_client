@@ -6,6 +6,7 @@ import './Register.css';
 import { FaGoogle, FaUserAlt, FaPhotoVideo, FaLock } from 'react-icons/fa';
 import { AiOutlineMail } from 'react-icons/ai';
 import { setAuthToken } from '../../API/CreateJWTtoken';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
 	const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
@@ -163,6 +164,9 @@ const Register = () => {
 					</form>
 				</div>
 			</section>
+			<Helmet>
+				<title>Register - Nikah Photography</title>
+			</Helmet>
 		</div>
 	);
 };
