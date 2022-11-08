@@ -77,7 +77,7 @@ const Header = () => {
 			<div className="relative flex items-center justify-between">
 				<Link to={'/'} aria-label="Company" title="Company" className="inline-flex items-center">
 					<img src={logo} alt="" className="w-20 rounded-full " />
-					<span className="ml-2 font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-wide text-gray-800 uppercase">
+					<span className="ml-2 font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-wide  uppercase">
 						Nikah Photography
 					</span>
 				</Link>
@@ -114,7 +114,7 @@ const Header = () => {
 											title="Company"
 											className="inline-flex items-center">
 											<img src={logo} alt="" className="w-20 rounded-full " />
-											<span className="ml-2 font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-wide text-gray-800 uppercase">
+											<span className="ml-2 font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-wide  uppercase">
 												Nikah Photography
 											</span>
 										</Link>

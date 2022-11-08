@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserProvider';
@@ -7,9 +7,16 @@ import Reviews from './Reviews/Reviews';
 
 const ServiceDetails = () => {
 	const service = useLoaderData();
-	const {user} = useContext(AuthContext)
-
+	const { user } = useContext(AuthContext);
 	const { serviceName, image, price, _id, description } = service;
+
+	const [reviews, setReviews] = useState([]);
+
+	useEffect(() => {
+		fetch(`https://assignment-11-server-pi.vercel.app/reviews?service=${_id}`)
+			.then((res) => res.json())
+			.then((data) => setReviews(data));
+	}, [_id]);
 
 	return (
 		<div>
@@ -46,9 +53,32 @@ const ServiceDetails = () => {
 			{/* review section */}
 
 			<div>
-				{
-					user?.email ? <AddReviews/> : <Reviews/>
-				}
+				{reviews.length === 0 ? (
+					<h1 className="text-4xl font-bold my-5">
+						{' '}
+						<span className="text-red-500">No reviews Available</span> for {serviceName}
+					</h1>
+				) : (
+					<div className="max-w-[1200px] mx-auto">
+						{reviews.map((review) => (
+							<Reviews review={review} key={review._id} />
+						))}
+					</div>
+				)}
+
+				{_id ? (
+					<>
+						{user?.email ? (
+							<AddReviews service={service} />
+						) : (
+							<>
+								<button>Login</button>
+							</>
+						)}
+					</>
+				) : (
+					<h1>No review</h1>
+				)}
 			</div>
 		</div>
 	);

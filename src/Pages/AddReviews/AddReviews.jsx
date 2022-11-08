@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaPhotoVideo } from 'react-icons/fa';
 import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../Contexts/UserProvider';
 
-const AddReviews = () => {
+const AddReviews = ({ service }) => {
+	const { serviceName, image, price, _id, description } = service;
+	const { user } = useContext(AuthContext);
+
 	const handleAddReview = (event) => {
 		event.preventDefault();
 		const form = event.target;
@@ -15,6 +19,8 @@ const AddReviews = () => {
 			name: userName,
 			text,
 			picture: photoURL,
+			serviceId: _id,
+			email: user?.email,
 		};
 		console.log(review);
 
