@@ -4,6 +4,7 @@ import { AuthContext } from '../../Contexts/UserProvider';
 import './Login.css';
 import { toast } from 'react-toastify';
 import { FaGoogle } from 'react-icons/fa';
+import { setAuthToken } from '../../API/CreateJWTtoken';
 
 const Login = () => {
 	const { login, googleSignIn } = useContext(AuthContext);
@@ -17,14 +18,29 @@ const Login = () => {
 		const form = event.target;
 		const email = form.email.value;
 		const password = form.password.value;
-		
+
 		login(email, password)
 			.then((result) => {
 				const user = result.user;
-				console.log(user);
-				navigate(from, { replace: true });
-				toast.success('Logged In');
-				form.reset();
+				const currentUser = {
+					email: user?.email,
+				};
+
+				fetch('http://localhost:5000/jwt', {
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json',
+					},
+					body: JSON.stringify(currentUser),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data.token);
+						localStorage.setItem('photo-token', data.token);
+						toast.success('Logged In');
+						navigate(from, { replace: true });
+						// form.reset();
+					});
 			})
 			.catch((err) => {
 				console.log(err);
@@ -36,9 +52,13 @@ const Login = () => {
 		googleSignIn()
 			.then((result) => {
 				const user = result.user;
-				console.log(user);
-				toast.success('Logged In');
+				const currentUser = {
+					email: user?.email,
+				};
+				setAuthToken(currentUser);
+
 				navigate(from, { replace: true });
+				toast.success('Logged In');
 			})
 			.catch((err) => {
 				console.log(err);

@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './../../Contexts/UserProvider';
 import MyReviewCards from './MyReviewCards';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
 import { toast } from 'react-toastify';
 
 const MyReviews = () => {
@@ -37,7 +36,7 @@ const MyReviews = () => {
 		<div>
 			<h1>
 				{reviews.length === 0 ? (
-					<p>No reviews were Added</p>
+					<p className='text-5xl font-extrabold flex items-center min-h-screen justify-center bg-clip-text text-transparent bg-gradient-to-l from-red-500 to-red-800'>No reviews were Added</p>
 				) : (
 					<p className="text-4xl font-bold">
 						<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold">

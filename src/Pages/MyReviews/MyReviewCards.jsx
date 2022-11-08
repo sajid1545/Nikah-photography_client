@@ -10,6 +10,8 @@ const MyReviewCards = ({ review,handleDeleteReview }) => {
 
 	const [reviewedService, setReviewedService] = useState({});
 
+	const {_id} = review;
+
 	useEffect(() => {
 		fetch(`https://assignment-11-server-pi.vercel.app/services/${serviceId}`)
 			.then((res) => res.json())
@@ -29,7 +31,7 @@ const MyReviewCards = ({ review,handleDeleteReview }) => {
 					<div>
 						<div className="flex gap-5 justify-center my-5">
 							
-							<Link to={`/update-review/${review._id}`}>
+							<Link to={`/update-review/${_id}`}>
 								<button
 									className="group relative inline-block overflow-hidden border border-indigo-600 px-10 py-3 focus:outline-none focus:ring"
 									href="/download">

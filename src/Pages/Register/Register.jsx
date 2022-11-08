@@ -1,13 +1,18 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/UserProvider';
 import './Register.css';
 import { FaGoogle, FaUserAlt, FaPhotoVideo, FaLock } from 'react-icons/fa';
 import { AiOutlineMail } from 'react-icons/ai';
+import { setAuthToken } from '../../API/CreateJWTtoken';
 
 const Register = () => {
 	const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
+
+	const navigate = useNavigate();
+	const location = useLocation();
+	let from = location.state?.from?.pathname || '/';
 
 	const handleRegister = (event) => {
 		event.preventDefault();
@@ -20,13 +25,19 @@ const Register = () => {
 		createUser(email, password)
 			.then((result) => {
 				const user = result.user;
-				console.log(user);
+				const currentUser = {
+					email: user?.email,
+				};
 				handleUpdateProfile(name, photoURL);
-				form.reset();
+				setAuthToken(currentUser);
+
+				navigate(from, { replace: true });
+
 				toast.success('Successfully registered');
 			})
 			.catch((err) => {
 				console.log(err);
+				toast.error(err.message);
 			});
 	};
 
@@ -34,7 +45,12 @@ const Register = () => {
 		googleSignIn()
 			.then((result) => {
 				const user = result.user;
-				console.log(user);
+				const currentUser = {
+					email: user?.email,
+				};
+				setAuthToken(currentUser);
+
+				navigate(from, { replace: true });
 				toast.success('Logged In');
 			})
 			.catch((err) => {
