@@ -20,9 +20,9 @@ const ServiceDetails = () => {
 	
 
 	return (
-		<div>
+		<div className='md:mt-0  mt-[300px]'>
 			{/* service details */}
-			<div className="max-w-[1200px] mx-auto my-10">
+			<div className="max-w-[1200px] mx-auto my-10 ">
 				<div className="card lg:card-side bg-gray-900 text-white shadow-xl shadow-gray-500">
 					<figure className="px-24">
 						<PhotoProvider

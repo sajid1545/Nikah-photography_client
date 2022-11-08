@@ -17,6 +17,13 @@ const Header = () => {
 		<>
 			<li>
 				<NavLink
+					to={'/services'}
+					className={`font-medium ${(isActive) => (isActive ? 'bg-red-600' : undefined)}`}>
+					Services
+				</NavLink>
+			</li>
+			<li>
+				<NavLink
 					to={'/blogs'}
 					className={`font-medium ${(isActive) => (isActive ? 'bg-red-600' : undefined)}`}>
 					Blogs

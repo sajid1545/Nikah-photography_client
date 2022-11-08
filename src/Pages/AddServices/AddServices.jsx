@@ -36,7 +36,7 @@ const AddServices = () => {
 	};
 
 	return (
-		<div className="max-w-[1000px] mx-auto ">
+		<div className="max-w-[1000px] mx-auto md:mt-0  mt-[300px] ">
 			<h1 className="text-5xl text-center mb-5 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-800 font-extrabold">
 				Add Service
 			</h1>

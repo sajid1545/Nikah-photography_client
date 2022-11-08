@@ -8,7 +8,7 @@ import SelfBanner from '../SelfBanner/SelfBanner';
 
 const Home = () => {
 	return (
-		<div>
+		<div className='md:mt-0  mt-[300px]'>
 			<SelfBanner />
 			<PhotoSlider />
 			<MyInfo />
