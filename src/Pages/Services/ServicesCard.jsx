@@ -35,7 +35,7 @@ const ServicesCard = ({ service }) => {
 							<h3 className="text-xl font-semibold text-yellow-500">${price}</h3>
 						</div>
 						<p className="leading-snug dark:text-gray-400">
-							{description.length > 100 ? description.slice(0, 100) + '...' : description}
+							{description.length > 90 ? description.slice(0, 90) + '...' : description}
 						</p>
 						<div>
 							<Link to={`/services/${_id}`}>

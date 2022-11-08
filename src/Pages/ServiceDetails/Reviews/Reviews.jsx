@@ -27,7 +27,6 @@ const Reviews = ({ review }) => {
 					</div>
 					<div class="w-full">
 						<p class="text-md text-indigo-500 font-bold text-center">{name}</p>
-						<p class="text-xs text-gray-500 dark:text-gray-300 text-center">{email}</p>
 					</div>
 				</div>
 			</div>

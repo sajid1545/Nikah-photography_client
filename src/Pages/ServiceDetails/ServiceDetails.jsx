@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserProvider';
 import AddReviews from '../AddReviews/AddReviews';
 import Reviews from './Reviews/Reviews';
 
 const ServiceDetails = () => {
 	const service = useLoaderData();
-	const { user } = useContext(AuthContext);
+	const { user} = useContext(AuthContext);
 	const { serviceName, image, price, _id, description } = service;
 
 	const [reviews, setReviews] = useState([]);
@@ -17,6 +17,7 @@ const ServiceDetails = () => {
 			.then((res) => res.json())
 			.then((data) => setReviews(data));
 	}, [_id]);
+	
 
 	return (
 		<div>
@@ -33,7 +34,7 @@ const ServiceDetails = () => {
 									: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
 							}>
 							<PhotoView src={image}>
-								<img src={image} alt="services" className="w-96 h-60 cursor-pointer" />
+								<img src={image} alt="services" className="w-96 h-[300px] cursor-pointer" />
 							</PhotoView>
 						</PhotoProvider>
 					</figure>
@@ -72,7 +73,17 @@ const ServiceDetails = () => {
 							<AddReviews service={service} />
 						) : (
 							<>
-								<button>Login</button>
+								<p className="text-2xl font-bold my-3">Please Login to add a Review</p>
+
+								<Link to={'/login'}>
+									<button className="group relative inline-block text-sm font-medium text-indigo-600 mb-10 focus:outline-none focus:ring active:text-indigo-500">
+										<span className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-indigo-600 transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
+
+										<span className="relative block border border-current bg-white px-16 py-3">
+											Login
+										</span>
+									</button>
+								</Link>
 							</>
 						)}
 					</>

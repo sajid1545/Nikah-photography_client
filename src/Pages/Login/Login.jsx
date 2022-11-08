@@ -17,14 +17,19 @@ const Login = () => {
 		const form = event.target;
 		const email = form.email.value;
 		const password = form.password.value;
-		console.log(email, password);
-		login(email, password).then((result) => {
-			const user = result.user;
-			console.log(user);
-			toast.success('Logged In');
-			form.reset();
-			navigate(from, { replace: true });
-		});
+		
+		login(email, password)
+			.then((result) => {
+				const user = result.user;
+				console.log(user);
+				navigate(from, { replace: true });
+				toast.success('Logged In');
+				form.reset();
+			})
+			.catch((err) => {
+				console.log(err);
+				toast.error(err.message);
+			});
 	};
 
 	const handleGoogleSignIn = () => {
