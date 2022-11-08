@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Triangle, Vortex } from 'react-loader-spinner';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/UserProvider';
 import ServicesCard from './ServicesCard';
 
 const Services = () => {
+	const { loading } = useContext(AuthContext);
 	const services = useLoaderData();
+
+	if (loading) {
+		return (
+			<div className="flex justify-center items-center h-screen">
+				<Triangle
+					height="100"
+					width="100"
+					color="#4fa94d"
+					ariaLabel="triangle-loading"
+					wrapperStyle={{}}
+					wrapperClassName=""
+					visible={true}
+				/>
+			</div>
+		);
+	}
 
 	return (
 		<div className="my-10">

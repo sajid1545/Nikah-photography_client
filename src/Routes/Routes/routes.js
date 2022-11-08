@@ -7,6 +7,7 @@ import Login from '../../Pages/Login/Login';
 import MyReviews from '../../Pages/MyReviews/MyReviews';
 import Register from '../../Pages/Register/Register';
 import ServiceDetails from '../../Pages/ServiceDetails/ServiceDetails';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Services from './../../Pages/Services/Services';
 
 export const router = createBrowserRouter([
@@ -29,7 +30,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/add-services',
-				element: <AddServices />,
+				element: (
+					<PrivateRoute>
+						<AddServices />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: '/services',
@@ -39,11 +44,16 @@ export const router = createBrowserRouter([
 			{
 				path: '/services/:id',
 				element: <ServiceDetails />,
-				loader: ({ params }) => fetch(`https://assignment-11-server-pi.vercel.app/services/${params.id}`),
+				loader: ({ params }) =>
+					fetch(`https://assignment-11-server-pi.vercel.app/services/${params.id}`),
 			},
 			{
 				path: '/my-reviews',
-				element: <MyReviews />,
+				element: (
+					<PrivateRoute>
+						<MyReviews />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: '/blogs',

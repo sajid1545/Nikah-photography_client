@@ -35,10 +35,14 @@ const UserProvider = ({ children }) => {
 	};
 
 	const googleSignIn = () => {
+		setLoading(true);
+
 		return signInWithPopup(auth, googleProvider);
 	};
 
 	const logOut = () => {
+		setLoading(true);
+
 		return signOut(auth);
 	};
 
