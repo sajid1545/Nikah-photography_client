@@ -46,7 +46,7 @@ const UpdateReview = () => {
 	};
 
 	return (
-		<div className="md:mt-0  mt-[300px] my-10">
+		<div className="md:mt-16  mt-[300px] my-16">
 			<section className="max-w-[1200px] p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
 				<form onSubmit={handleUpdateReview}>
 					<div className="">

@@ -20,29 +20,25 @@ const Header = () => {
 			<li>
 				<NavLink
 					to={'/services'}
-					className={`font-medium  hover:text-red-400 hover:underline duration-500 ${(isActive) =>
+					className={`font-medium   hover:underline duration-500 ${(isActive) =>
 						isActive ? 'active' : undefined}`}>
 					Services
 				</NavLink>
 			</li>
 			<li>
-				<NavLink to={'/blogs'} className={`font-medium `}>
+				<NavLink to={'/blogs'} className={`font-medium hover:underline duration-500`}>
 					Blogs
 				</NavLink>
 			</li>
 			{user?.email ? (
 				<>
 					<li>
-						<NavLink
-							to={'/my-reviews'}
-							className="font-medium hover:text-red-400 hover:underline duration-500 ">
+						<NavLink to={'/my-reviews'} className="font-medium  hover:underline duration-500 ">
 							My Reviews
 						</NavLink>
 					</li>
 					<li>
-						<NavLink
-							to={'/add-services'}
-							className="font-medium  hover:text-red-400 hover:underline duration-500 ">
+						<NavLink to={'/add-services'} className="font-medium   hover:underline duration-500 ">
 							Add Service
 						</NavLink>
 					</li>
