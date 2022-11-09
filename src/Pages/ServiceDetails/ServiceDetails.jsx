@@ -58,7 +58,7 @@ const ServiceDetails = () => {
 
 			<div>
 				{reviews.length === 0 ? (
-					<h1 className="text-4xl font-bold my-5">
+					<h1 className="text-2xl font-bold my-14">
 						{' '}
 						<span className="text-red-500">No reviews Available</span> for {serviceName}
 					</h1>

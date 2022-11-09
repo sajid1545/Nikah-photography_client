@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Main from '../../layout/Main';
 import AddServices from '../../Pages/AddServices/AddServices';
 import Blogs from '../../Pages/Blogs/Blogs';
+import ErrorPage from '../../Pages/ErrorPage/ErrorPage';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login';
 import MyReviews from '../../Pages/MyReviews/MyReviews';
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <Main />,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				path: '/',
