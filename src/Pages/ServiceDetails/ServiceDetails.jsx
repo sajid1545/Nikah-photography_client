@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { Link, Navigate, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserProvider';
 import AddReviews from '../AddReviews/AddReviews';
 import Reviews from './Reviews/Reviews';
@@ -32,7 +32,9 @@ const ServiceDetails = () => {
 			.catch(() => {
 				setLoading(false);
 			});
-	}, [_id, refresh]);
+	}, [_id, refresh,setLoading]);
+
+	console.log(reviews);
 
 	if (loading) {
 		return (
