@@ -4,7 +4,7 @@ import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/UserProvider';
 
-const AddReviews = ({ service }) => {
+const AddReviews = ({ service, setRefresh }) => {
 	const { serviceName, image, price, _id, description } = service;
 	const { user } = useContext(AuthContext);
 
@@ -22,7 +22,6 @@ const AddReviews = ({ service }) => {
 			serviceId: _id,
 			email: user?.email,
 		};
-		console.log(review);
 
 		fetch('https://assignment-11-server-pi.vercel.app/reviews', {
 			method: 'POST',
@@ -35,6 +34,7 @@ const AddReviews = ({ service }) => {
 			.then((data) => {
 				if (data.acknowledged) {
 					toast.success('Review Added');
+					setRefresh(true);
 					form.reset();
 				}
 			});

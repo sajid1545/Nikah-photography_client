@@ -13,11 +13,13 @@ const ServiceDetails = () => {
 
 	const [reviews, setReviews] = useState([]);
 
+	const [refresh,setRefresh] = useState(false)
+
 	useEffect(() => {
 		fetch(`https://assignment-11-server-pi.vercel.app/reviews?service=${_id}`)
 			.then((res) => res.json())
 			.then((data) => setReviews(data));
-	}, [_id]);
+	}, [_id,refresh]);
 	
 
 	return (
@@ -71,7 +73,7 @@ const ServiceDetails = () => {
 				{_id ? (
 					<>
 						{user?.email ? (
-							<AddReviews service={service} />
+							<AddReviews service={service} setRefresh = {setRefresh} />
 						) : (
 							<>
 								<p className="text-2xl font-bold my-3">Please Login to add a Review</p>

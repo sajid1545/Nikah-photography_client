@@ -24,6 +24,9 @@ const MyReviews = () => {
 			})
 			.then((data) => {
 				setReviews(data);
+			})
+			.catch((err) => {
+				toast.error(err.message);
 			});
 	}, [user?.email, logOut]);
 
@@ -49,14 +52,14 @@ const MyReviews = () => {
 	};
 
 	return (
-		<div className='md:mt-0  mt-[300px]'>
+		<div className="md:mt-0  mt-[300px]">
 			<h1>
 				{reviews.length !== 0 ? (
 					<p className="text-4xl font-bold">
-						<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold">
+						<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold uppercase">
 							{user?.displayName}
 						</span>{' '}
-						have {reviews.length} reviews
+						have given {reviews.length} reviews
 					</p>
 				) : (
 					<p className="text-5xl font-extrabold flex items-center min-h-screen justify-center bg-clip-text text-transparent bg-gradient-to-l from-red-500 to-red-800">

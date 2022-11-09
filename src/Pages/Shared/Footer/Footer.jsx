@@ -11,10 +11,11 @@ const Footer = () => {
                 <img src={logo} alt="logo" className="text-xl font-bold text-gray-600 transition-colors duration-300 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 w-20 rounded-full"/>
 
 				<p className="text-sm text-gray-600 dark:text-gray-300">
-					© Copyright 2021. All Rights Reserved.
+					© Copyright 2022. All Rights Reserved to NIKAH PHOTOGRAPHY
 				</p>
 
 				<div className="flex -mx-2">
+					<h1>Connect with Me</h1>
 					<div
 						className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
 						aria-label="Reddit">
