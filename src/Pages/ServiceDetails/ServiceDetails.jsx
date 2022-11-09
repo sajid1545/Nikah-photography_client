@@ -5,25 +5,48 @@ import { AuthContext } from '../../Contexts/UserProvider';
 import AddReviews from '../AddReviews/AddReviews';
 import Reviews from './Reviews/Reviews';
 import { Helmet } from 'react-helmet-async';
+import { RotatingTriangles } from 'react-loader-spinner';
 
 const ServiceDetails = () => {
 	const service = useLoaderData();
-	const { user} = useContext(AuthContext);
+	const { user, loading, setLoading } = useContext(AuthContext);
 	const { serviceName, image, price, _id, description } = service;
 
 	const [reviews, setReviews] = useState([]);
 
-	const [refresh,setRefresh] = useState(false)
+	const [refresh, setRefresh] = useState(false);
 
 	useEffect(() => {
+		setLoading(true);
+
 		fetch(`https://assignment-11-server-pi.vercel.app/reviews?service=${_id}`)
 			.then((res) => res.json())
-			.then((data) => setReviews(data));
-	}, [_id,refresh]);
-	
+			.then((data) => {
+				setReviews(data);
+				setLoading(false);
+			})
+			.catch(() => {
+				setLoading(false);
+			});
+	}, [_id, refresh]);
+
+	if (loading) {
+		return (
+			<div className="flex justify-center items-center h-screen">
+				<RotatingTriangles
+					visible={true}
+					height="180"
+					width="180"
+					ariaLabel="rotating-triangels-loading"
+					wrapperStyle={{}}
+					wrapperClass="rotating-triangels-wrapper"
+				/>
+			</div>
+		);
+	}
 
 	return (
-		<div className='md:mt-0  mt-[300px]'>
+		<div className="md:mt-0  mt-[300px]">
 			{/* service details */}
 			<div className="max-w-[1200px] mx-auto my-10 ">
 				<div className="card lg:card-side bg-gray-900 text-white shadow-xl shadow-gray-500">
@@ -73,7 +96,7 @@ const ServiceDetails = () => {
 				{_id ? (
 					<>
 						{user?.email ? (
-							<AddReviews service={service} setRefresh = {setRefresh} />
+							<AddReviews service={service} setRefresh={setRefresh} />
 						) : (
 							<>
 								<p className="text-2xl font-bold my-3">Please Login to add a Review</p>

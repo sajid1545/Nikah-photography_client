@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
 			{
 				path: '/services',
 				element: <Services />,
-				loader: () => fetch('https://assignment-11-server-pi.vercel.app/services'),
+				// loader: () => fetch('https://assignment-11-server-pi.vercel.app/services'),
 			},
 			{
 				path: '/services/:id',

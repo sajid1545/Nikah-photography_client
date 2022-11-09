@@ -13,8 +13,8 @@ const PrivateRoute = ({ children }) => {
 			<div className="flex justify-center items-center h-screen">
 				<Vortex
 					visible={true}
-					height="100"
-					width="100"
+					height="150"
+					width="150"
 					ariaLabel="vortex-loading"
 					wrapperStyle={{}}
 					wrapperClass="vortex-wrapper"

@@ -4,12 +4,16 @@ import MyReviewCards from './MyReviewCards';
 
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
+import { RotatingTriangles, Vortex } from 'react-loader-spinner';
 
 const MyReviews = () => {
 	const { user, logOut } = useContext(AuthContext);
 	const [reviews, setReviews] = useState([]);
 
+	const [load, setLoad] = useState(true);
+
 	useEffect(() => {
+		setLoad(true);
 		fetch(`https://assignment-11-server-pi.vercel.app/my-reviews?email=${user?.email}`, {
 			headers: {
 				authorization: `Bearer ${localStorage.getItem('photo-token')}`,
@@ -24,11 +28,28 @@ const MyReviews = () => {
 			})
 			.then((data) => {
 				setReviews(data);
+				setLoad(false);
 			})
 			.catch((err) => {
 				toast.error(err.message);
 			});
 	}, [user?.email, logOut]);
+
+	if (load) {
+		return (
+			<div className="flex justify-center items-center h-screen">
+				<Vortex
+					visible={true}
+					height="150"
+					width="150"
+					ariaLabel="vortex-loading"
+					wrapperStyle={{}}
+					wrapperClass="vortex-wrapper"
+					colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+				/>
+			</div>
+		);
+	}
 
 	const handleDeleteReview = (_id) => {
 		const agree = window.confirm('Are you sure you want to delete this review');

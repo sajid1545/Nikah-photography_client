@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Triangle, Vortex } from 'react-loader-spinner';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserProvider';
@@ -6,16 +6,31 @@ import ServicesCard from './ServicesCard';
 import { Helmet } from 'react-helmet-async';
 
 const Services = () => {
-	const { loading } = useContext(AuthContext);
-	const services = useLoaderData();
+	const { loading, setLoading } = useContext(AuthContext);
+	// const services = useLoaderData();
+
+	const [services, setServices] = useState([]);
+
+	useEffect(() => {
+		setLoading(true);
+		fetch('https://assignment-11-server-pi.vercel.app/services')
+			.then((res) => res.json())
+			.then((data) => {
+				setServices(data);
+				setLoading(false);
+			})
+			.catch(() => {
+				setLoading(false);
+			});
+	}, []);
 
 	if (loading) {
 		return (
 			<div className="flex justify-center items-center h-screen">
 				<Triangle
-					height="100"
-					width="100"
-					color="#4fa94d"
+					height="200"
+					width="200"
+					color="#DC143C"
 					ariaLabel="triangle-loading"
 					wrapperStyle={{}}
 					wrapperClassName=""
