@@ -73,7 +73,7 @@ const MyReviews = () => {
 	};
 
 	return (
-		<div className="md:mt-0  mt-[300px]">
+		<div className="lg:mt-0  mt-[300px]">
 			<h1>
 				{reviews.length !== 0 ? (
 					<p className="text-4xl font-bold">

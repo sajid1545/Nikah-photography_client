@@ -37,6 +37,7 @@
 9. react-helmet-async --> to make the page title dynamic and different for every pages
 10. react-photo-view --> to preview an image
 11. AOS LIBRARY --> for animation
+12. react-scroll-to-top ---> scroll to the top of the page
 
 #
 

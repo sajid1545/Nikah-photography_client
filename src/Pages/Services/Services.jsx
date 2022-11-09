@@ -53,12 +53,12 @@ const Services = () => {
 				))}
 			</div>
 
-			<div className="flex space-x-5 w-2/4 justify-center mx-auto my-5 space-y-5 md:space-y-0 flex-col md:flex-row">
+			<div className="flex space-x-5 w-2/4 items-center  justify-center mx-auto my-5   space-y-0 flex-row ">
 				{[...Array(pages).keys()].map((number) => (
 					<button
 						key={number}
 						className={` inline-flex items-center justify-center w-10 h-10 text-sm border rounded shadow-md dark:bg-gray-900 dark:border-gray-800 text-white font-semibold ${
-							page === number ? 'bg-yellow-700 font-bold text-3xl' : ''
+							page === number ? 'text-red-500 font-bold text-3xl' : ''
 						}`}
 						onClick={() => setPage(number)}>
 						{number + 1}

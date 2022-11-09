@@ -50,10 +50,10 @@ const ServiceDetails = () => {
 	}
 
 	return (
-		<div className="md:mt-0  mt-[300px]">
+		<div className="lg:mt-0  mt-[300px]">
 			{/* service details */}
-			<div className="max-w-[1200px] mx-auto my-10 ">
-				<div className="card lg:card-side bg-gray-900 text-white shadow-xl shadow-gray-500">
+			<div className="max-w-[1200px] mx-auto my-10  ">
+				<div className="card lg:card-side bg-slate-800 text-white  shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1),_25px_25px_rgba(0,_98,_90,_0.05)]">
 					<figure className="px-24">
 						<PhotoProvider
 							src={image}
