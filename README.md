@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+#### App Title ---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Nikah Photography
 
-## Available Scripts
+## Live Site
 
-In the project directory, you can run:
+(https://assignment-11-cf2b9.firebaseapp.com/ “Nikah Photography”)
 
-### `npm start`
+#
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. This is a personal photography service app. In this app users can check out my services and add review
+2. In this app My services and Add review pages are protected, unless user is signed in, they can't view the content or use the functionalities of those pages.
+3. In this app user can sign in by Google and by using email. User must register first with email and password if he/she wish to sign in using email.
+4. While login in or registering user will be given an **Access token** which will expire within one day.After expiration user must login again to see content of My reviews page.
+5. In this app if user is logged in, user can add services from add services page , and give review of the services from service details page.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+6. Signed in user can see there profile picture in the top right corner of the navbar. While registering user can add a profile picture and update its name.
+7. User can check all the reviews users have give from My reviews page. Users can delete or update the the review text, user picture and user name.
+8. The services in service is sorted in descending order, latest added service will appear first
+9. In home page only 3 services are shown, which is also sorted in descending order.
+10. In service details page the reviews ar sorted in descending order, this sorting is done by comparing the timestamp.
+11. In order to write a review you must login first, without login all other reviews will be visible but review form won't be visible until you login.
 
-### `npm test`
+#
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Packages and Technologies used (Client Side)
 
-### `npm run build`
+1. Tailwind CSS , daisyui (Tailwind component library)
+2. React router dom to route through components
+3. React (JS library)
+4. react-icons --> used as it is easier to work with
+5. react-loader-spinner --> more fancier than normal ones and easily customizable
+6. firebase-authentication ---> firebase allows users to register or login to the app
+7. react-awesome-slider ---> for a fancy slider
+8. react-toastify -->to show a toast (success / error)
+9. react-helmet-async --> to make the page title dynamic and different for every pages
+10. react-photo-view --> to preview an image
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Packages and Technologies used (Server Side)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Nodemon --> to monitor changes while updating
+2. Express js (Node js framework)
+3. Cors --> supports data transfer between servers
+4. Colors --> to see the output in different colors in console
+5. jsonwebtoken --> to securing information sharing between server and client
+6. dotenv --> to separate secrets from my code
