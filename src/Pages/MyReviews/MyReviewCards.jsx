@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import UpdateReview from '../UpdateReview/UpdateReview';
 import { AuthContext } from './../../Contexts/UserProvider';
 
-const MyReviewCards = ({ review,handleDeleteReview }) => {
+const MyReviewCards = ({ review, handleDeleteReview }) => {
 	const { user } = useContext(AuthContext);
 	const { serviceId, picture, name, email, text } = review.review;
 
 	const [reviewedService, setReviewedService] = useState({});
 
-	const {_id} = review;
+	const { _id } = review;
 
 	useEffect(() => {
 		fetch(`https://assignment-11-server-pi.vercel.app/services/${serviceId}`)
@@ -30,7 +30,6 @@ const MyReviewCards = ({ review,handleDeleteReview }) => {
 
 					<div>
 						<div className="flex gap-5 justify-center my-5">
-							
 							<Link to={`/update-review/${_id}`}>
 								<button
 									className="group relative inline-block overflow-hidden border border-indigo-600 px-10 py-3 focus:outline-none focus:ring"
@@ -43,7 +42,7 @@ const MyReviewCards = ({ review,handleDeleteReview }) => {
 								</button>
 							</Link>
 							<button
-								onClick={()=> handleDeleteReview(review._id)}
+								onClick={() => handleDeleteReview(review._id)}
 								className="group relative inline-block overflow-hidden border border-red-600 px-10 py-3 focus:outline-none focus:ring"
 								href="/download">
 								<span className="absolute inset-x-0 bottom-0 h-[2px] bg-red-600 transition-all group-hover:h-full group-active:bg-red-500"></span>
@@ -59,8 +58,9 @@ const MyReviewCards = ({ review,handleDeleteReview }) => {
 						<div>
 							<img
 								alt=""
+								
 								className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 ring-violet-400 ring-offset-gray-800"
-								src={picture}
+								src={picture || user?.photoURL}
 							/>
 						</div>
 						<div>

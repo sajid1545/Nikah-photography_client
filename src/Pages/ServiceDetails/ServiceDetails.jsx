@@ -34,7 +34,6 @@ const ServiceDetails = () => {
 			});
 	}, [_id, refresh,setLoading]);
 
-	console.log(reviews);
 
 	if (loading) {
 		return (
