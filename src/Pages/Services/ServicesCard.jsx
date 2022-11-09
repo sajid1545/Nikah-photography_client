@@ -7,7 +7,7 @@ const ServicesCard = ({ service }) => {
 
 	return (
 		<div>
-			<div  data-aos="zoom-out"  data-aos-duration="1500" className="max-w-lg p-4 shadow-md dark:bg-gray-900 dark:text-gray-100 rounded-lg">
+			<div  data-aos="zoom-out"  data-aos-duration="1500" className="max-w-lg p-4 shadow-md dark:bg-gray-900 dark:text-gray-100 rounded-lg ">
 				<div className="space-y-4">
 					<div className="space-y-2">
 						<PhotoProvider

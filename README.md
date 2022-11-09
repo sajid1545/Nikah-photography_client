@@ -20,6 +20,7 @@
 9. In home page only 3 services are shown, which is also sorted in descending order.
 10. In service details page the reviews ar sorted in descending order, this sorting is done by comparing the timestamp.
 11. In order to write a review you must login first, without login all other reviews will be visible but review form won't be visible until you login.
+12. Only 6 services can be seen in a page (because of pagination)
 
 #
 

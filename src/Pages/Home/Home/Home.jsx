@@ -7,6 +7,7 @@ import SelfBanner from '../SelfBanner/SelfBanner';
 import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
+	
 	return (
 		<div className="md:mt-0  mt-[300px]">
 			<SelfBanner />

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaPhotoVideo } from 'react-icons/fa';
 import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
-import { useLoaderData } from 'react-router-dom';
+import { Navigate, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/UserProvider';
 
@@ -43,7 +43,8 @@ const UpdateReview = () => {
 					toast.success('Updated Successfully');
 				}
 			});
-	};
+			
+		};
 
 	return (
 		<div className="md:mt-16  mt-[300px] my-16">

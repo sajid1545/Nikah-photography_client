@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, Navigate, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserProvider';
 import AddReviews from '../AddReviews/AddReviews';
 import Reviews from './Reviews/Reviews';
@@ -11,6 +11,10 @@ const ServiceDetails = () => {
 	const service = useLoaderData();
 	const { user, loading, setLoading } = useContext(AuthContext);
 	const { serviceName, image, price, _id, description } = service;
+
+	const navigate = useNavigate();
+	const location = useLocation();
+	let from = location.state?.from?.pathname || '/';
 
 	const [reviews, setReviews] = useState([]);
 
@@ -101,7 +105,7 @@ const ServiceDetails = () => {
 							<>
 								<p className="text-2xl font-bold my-3">Please Login to add a Review</p>
 
-								<Link to={'/login'}>
+								<Link to="/login" state={{ from: location }} replace>
 									<button className="group relative inline-block text-sm font-medium text-indigo-600 mb-10 focus:outline-none focus:ring active:text-indigo-500">
 										<span className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-indigo-600 transition-transform group-hover:translate-y-0 group-hover:translate-x-0"></span>
 

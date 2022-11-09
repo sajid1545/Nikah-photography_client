@@ -7,22 +7,27 @@ import { Helmet } from 'react-helmet-async';
 
 const Services = () => {
 	const { loading, setLoading } = useContext(AuthContext);
-	// const services = useLoaderData();
 
 	const [services, setServices] = useState([]);
 
+	const [count, setCount] = useState(0);
+	const [page, setPage] = useState(0);
+	const [size, setSize] = useState(6);
+	const pages = Math.ceil(count / size);
+
 	useEffect(() => {
 		setLoading(true);
-		fetch('https://assignment-11-server-pi.vercel.app/services')
+		fetch(`https://assignment-11-server-pi.vercel.app/services?page=${page}&size=${size}`)
 			.then((res) => res.json())
 			.then((data) => {
-				setServices(data);
+				setServices(data.services);
+				setCount(data.count);
 				setLoading(false);
 			})
 			.catch(() => {
 				setLoading(false);
 			});
-	}, []);
+	}, [page, size]);
 
 	if (loading) {
 		return (
@@ -41,12 +46,26 @@ const Services = () => {
 	}
 
 	return (
-		<div className="my-16 md:mt-16  mt-[300px]">
+		<div className="my-16 lg:mt-16  mt-[300px]">
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1330px] mx-auto">
 				{services.map((service) => (
 					<ServicesCard key={service._id} service={service} />
 				))}
 			</div>
+
+			<div className="flex space-x-5 w-2/4 justify-center mx-auto my-5 space-y-5 md:space-y-0 flex-col md:flex-row">
+				{[...Array(pages).keys()].map((number) => (
+					<button
+						key={number}
+						className={` inline-flex items-center justify-center w-10 h-10 text-sm border rounded shadow-md dark:bg-gray-900 dark:border-gray-800 text-white font-semibold ${
+							page === number ? 'bg-yellow-700 font-bold text-3xl' : ''
+						}`}
+						onClick={() => setPage(number)}>
+						{number + 1}
+					</button>
+				))}
+			</div>
+
 			<Helmet>
 				<title>Services - Nikah Photography</title>
 			</Helmet>
