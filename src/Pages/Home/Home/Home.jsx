@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { Vortex } from 'react-loader-spinner';
+import React from 'react';
 import HomeServices from '../HomeServices/HomeServices';
 import MyInfo from '../MyInfo/MyInfo';
 import MyPhotography from '../MyPhotography/MyPhotography';

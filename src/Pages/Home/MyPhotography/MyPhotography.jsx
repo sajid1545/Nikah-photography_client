@@ -1,10 +1,11 @@
 import React from 'react';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import self from '../../../assets/images/self-1.jpg';
 
 const MyPhotography = () => {
 	return (
-		<div className='my-10'>
+		<div className="my-10">
 			<h1 className="my-5 text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
 				About Your Photographer
 			</h1>
@@ -26,11 +27,22 @@ const MyPhotography = () => {
 					</div>
 				</div>
 				<div className="inset-y-0 right-0 w-full max-w-xl px-4 mx-auto lg:pl-8 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-1/2 lg:max-w-full lg:absolute xl:px-0">
-					<img
-						className="object-cover w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none sm:h-96 lg:h-full"
+					<PhotoProvider
 						src={self}
-						alt=""
-					/>
+						speed={() => 800}
+						easing={(type) =>
+							type === 2
+								? 'cubic-bezier(0.36, 0, 0.66, -0.56)'
+								: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+						}>
+						<PhotoView src={self}>
+							<img
+								src={self}
+								alt="services"
+								className="object-cover mx-auto h-56 rounded ring-2 ring-purple-500 ring-offset-4 ring-offset-slate-50  lg:rounded-full shadow-lg cursor-pointer  sm:h-96 lg:h-full"
+							/>
+						</PhotoView>
+					</PhotoProvider>
 				</div>
 			</div>
 		</div>

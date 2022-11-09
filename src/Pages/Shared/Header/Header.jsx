@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/UserProvider';
-import logo from '../../../assets/images/logo-12.png';
+import logo from '../../../assets/images/logo-wed.jpg';
 import { FaUser } from 'react-icons/fa';
+import './Header.css'
+
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -18,33 +20,33 @@ const Header = () => {
 			<li>
 				<NavLink
 					to={'/services'}
-					className={`font-medium ${(isActive) => (isActive ? 'bg-red-600' : undefined)}`}>
+					className={`font-medium  hover:text-red-400 hover:underline duration-500 ${(isActive) => (isActive ? 'active' : undefined)}`}>
 					Services
 				</NavLink>
 			</li>
 			<li>
 				<NavLink
 					to={'/blogs'}
-					className={`font-medium ${(isActive) => (isActive ? 'bg-red-600' : undefined)}`}>
+					className={`font-medium `}>
 					Blogs
 				</NavLink>
 			</li>
 			{user?.email ? (
 				<>
 					<li>
-						<NavLink to={'/my-reviews'} className="font-medium  ">
+						<NavLink to={'/my-reviews'} className="font-medium hover:text-red-400 hover:underline duration-500 ">
 							My Reviews
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to={'/add-services'} className="font-medium  ">
+						<NavLink to={'/add-services'} className="font-medium  hover:text-red-400 hover:underline duration-500 ">
 							Add Service
 						</NavLink>
 					</li>
 					<li>
 						<button
 							onClick={handleLogOut}
-							className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
+							className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75 text-black">
 							<span className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent duration-500">
 								Log Out
 							</span>
@@ -55,7 +57,7 @@ const Header = () => {
 				<>
 					<li>
 						<Link to={'/login'}>
-							<button className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
+							<button className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] text-black hover:text-white focus:outline-none focus:ring active:text-opacity-75">
 								<span className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent  duration-500">
 									Login
 								</span>
@@ -74,16 +76,16 @@ const Header = () => {
 						</div>
 					</>
 				) : (
-					<FaUser className="w-12 h-8 rounded-full text-gray-600" />
+					<FaUser className="w-12 h-8 rounded-full text-white" />
 				)}
 			</li>
 		</>
 	);
 
 	return (
-		<div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-			<div className="relative flex items-center justify-between">
-				<Link to={'/'} aria-label="Company" title="Company" className="inline-flex items-center">
+		<div className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 px-4 py-5 mx-auto  md:px-24 lg:px-8 text-white">
+			<div className="relative flex items-center justify-between ">
+				<Link to={'/'} className="inline-flex items-center">
 					<img src={logo} alt="" className="w-20 rounded-full " />
 					<span className="ml-2 font-extrabold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 tracking-wide  uppercase">
 						Nikah Photography

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/UserProvider';
@@ -14,6 +14,24 @@ const Register = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	let from = location.state?.from?.pathname || '/';
+
+	const [errors, setErrors] = useState({
+		password: '',
+		general: '',
+	});
+
+	// password validation
+	const handlePasswordChange = (e) => {
+		const password = e.target.value;
+		const noSymbol = !/[\!\@\#\$\%\^\&\*]{1,}/.test(password);
+		if (password.length < 6) {
+			setErrors({ ...errors, password: 'Must be at least 6 characters' });
+		} else if (noSymbol) {
+			setErrors({ ...errors, password: 'You must use atleast one special character' });
+		} else {
+			setErrors({ ...errors, password: '' });
+		}
+	};
 
 	const handleRegister = (event) => {
 		event.preventDefault();
@@ -35,7 +53,7 @@ const Register = () => {
 				setAuthToken(currentUser);
 			})
 			.catch((err) => {
-				console.log(err);
+				setErrors({ ...errors, general: err.message });
 				toast.error(err.message);
 			});
 	};
@@ -44,14 +62,14 @@ const Register = () => {
 		googleSignIn()
 			.then((result) => {
 				const user = result.user;
-				
+
 				setAuthToken(user);
 
 				navigate(from, { replace: true });
 				toast.success('Logged In');
 			})
 			.catch((err) => {
-				console.log(err);
+				setErrors({ ...errors, general: err.message });
 				toast.error(err.message);
 			});
 	};
@@ -64,7 +82,7 @@ const Register = () => {
 		updateUserProfile(profile)
 			.then(() => {})
 			.catch((err) => {
-				console.log(err);
+				setErrors({ ...errors, general: err.message });
 				toast.error(err.message);
 			});
 	};
@@ -85,6 +103,7 @@ const Register = () => {
 							<input
 								type="text"
 								name="name"
+								required
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 								placeholder="Full Name"
 							/>
@@ -97,6 +116,7 @@ const Register = () => {
 							<input
 								type="text"
 								name="photoURL"
+								required
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 								placeholder="Photo URL"
 							/>
@@ -110,6 +130,7 @@ const Register = () => {
 							<input
 								type="email"
 								name="email"
+								required
 								className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 								placeholder="Email address"
 							/>
@@ -123,10 +144,13 @@ const Register = () => {
 							<input
 								type="password"
 								name="password"
+								required
+								onChange={handlePasswordChange}
 								className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 								placeholder="Password"
 							/>
 						</div>
+						{errors.password && <p className="text-red-600">{errors.password}</p>}
 
 						<div className="mt-6">
 							<button
@@ -134,6 +158,7 @@ const Register = () => {
 								className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white  transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
 								Sign Up
 							</button>
+							{errors.general && <p className="text-center text-red-600">{errors.general}</p>}
 
 							<div className="mt-6 text-center ">
 								<span className="text-blue-500 mr-3">Already have an account?</span>

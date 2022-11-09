@@ -5,7 +5,7 @@ import './SelfBanner.css';
 const SelfBanner = () => {
 	return (
 		<div>
-			<section className="overflow-hidden  bg-cover bg-center bg-no-repeat self-banner p-[10%] ">
+			<section className="overflow-hidden  bg-cover bg-center bg-no-repeat self-banner p-[15%] ">
 				<div className=" p-8 md:p-12 lg:px-16 lg:py-24 text-center">
 					<div className=" text-center sm:text-left">
 						<h2 className="text-2xl text-center font-bold text-white sm:text-3xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-700">LOVE FIERCELY</h2>
