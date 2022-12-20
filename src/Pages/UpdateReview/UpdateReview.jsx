@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaPhotoVideo } from 'react-icons/fa';
 import { MdOutlineDescription, MdTextsms } from 'react-icons/md';
-import { Navigate, useLoaderData } from 'react-router-dom';
+import { Navigate, useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/UserProvider';
 
@@ -14,6 +14,8 @@ const UpdateReview = () => {
 	const { serviceId, picture, name, email, text } = review.review;
 
 	const { _id } = review;
+
+	const navigate = useNavigate()
 
 	const handleUpdateReview = (event) => {
 		event.preventDefault();
@@ -41,6 +43,7 @@ const UpdateReview = () => {
 			.then((data) => {
 				if (data.modifiedCount > 0) {
 					toast.success('Updated Successfully');
+					navigate('/my-reviews')
 				}
 			});
 			

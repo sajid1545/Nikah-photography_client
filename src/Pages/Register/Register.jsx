@@ -48,7 +48,8 @@ const Register = () => {
 				const currentUser = {
 					email: user?.email,
 				};
-				navigate(from, { replace: true });
+				// navigate(from, { replace: true });
+				navigate('/');
 				toast.success('Successfully registered');
 				setAuthToken(currentUser);
 			})
@@ -65,7 +66,9 @@ const Register = () => {
 
 				setAuthToken(user);
 
-				navigate(from, { replace: true });
+				// navigate(from, { replace: true });
+				navigate('/');
+
 				toast.success('Logged In');
 			})
 			.catch((err) => {
@@ -90,8 +93,8 @@ const Register = () => {
 	return (
 		<div className="register-form ">
 			<section className="">
-				<div className="container w-full max-w-md flex items-center justify-center min-h-screen px-6 mx-auto">
-					<form onSubmit={handleRegister} className="w-full bg-gray-900 py-10 px-5 rounded-xl">
+				<div className="container w-full max-w-xl flex items-center justify-center min-h-screen px-6 mx-auto">
+					<form onSubmit={handleRegister} className="w-[90%] bg-gray-900 py-10 px-5 rounded-xl">
 						<h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-white">
 							Register
 						</h1>

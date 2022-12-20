@@ -4,7 +4,7 @@ import MyReviewCards from './MyReviewCards';
 
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
-import { RotatingTriangles, Vortex } from 'react-loader-spinner';
+import { Vortex } from 'react-loader-spinner';
 
 const MyReviews = () => {
 	const { user, logOut } = useContext(AuthContext);
@@ -76,15 +76,15 @@ const MyReviews = () => {
 		<div className="lg:mt-0  mt-[300px]">
 			<h1>
 				{reviews.length !== 0 ? (
-					<p className="text-4xl font-bold">
-						<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold uppercase">
+					<p className="text-4xl font-bold my-10">
+						<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold uppercase ">
 							{user?.displayName}
 						</span>{' '}
 						have given {reviews.length} reviews
 					</p>
 				) : (
-					<p className="text-5xl font-extrabold flex items-center min-h-screen justify-center bg-clip-text text-transparent bg-gradient-to-l from-red-500 to-red-800">
-						No reviews were Added
+					<p className="text-5xl font-extrabold flex items-center min-h-screen justify-center bg-clip-text text-transparent bg-gradient-to-l from-red-500 to-red-800 my-10">
+						No reviews were Added by {user?.displayName}
 					</p>
 				)}
 			</h1>
