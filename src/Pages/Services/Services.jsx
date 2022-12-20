@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Triangle, Vortex } from 'react-loader-spinner';
-import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserProvider';
 import ServicesCard from './ServicesCard';
 import { Helmet } from 'react-helmet-async';
@@ -47,7 +46,7 @@ const Services = () => {
 
 	return (
 		<div className="my-16 lg:mt-16  mt-[300px]">
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1330px] mx-auto">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1330px] mx-auto my-14">
 				{services.map((service) => (
 					<ServicesCard key={service._id} service={service} />
 				))}
@@ -57,8 +56,8 @@ const Services = () => {
 				{[...Array(pages).keys()].map((number) => (
 					<button
 						key={number}
-						className={` inline-flex items-center justify-center w-10 h-10 text-sm border rounded shadow-md dark:bg-gray-900 dark:border-gray-800 text-white font-semibold ${
-							page === number ? 'text-red-500 font-bold text-3xl' : ''
+						className={` inline-flex items-center justify-center w-12 h-12 text-lg border rounded shadow-md bg-gray-900 border-gray-800 text-white font-semibold ${
+							page === number ? 'text-[#A78BFA] font-extrabold text-3xl' : ''
 						}`}
 						onClick={() => setPage(number)}>
 						{number + 1}

@@ -9,6 +9,7 @@
     "aos": "^2.3.4",
     "daisyui": "^2.38.1",
     "firebase": "^9.13.0",
+    "framer-motion": "^7.10.3",
     "react": "^18.2.0",
     "react-animated-text-content": "^1.0.1",
     "react-awesome-slider": "^4.1.0",
